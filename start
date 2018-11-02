@@ -1,0 +1,11 @@
+sudo nvidia-docker run -it -v /media/tj/ChenYP_Disk1:/home/cyp 15757174319/deepo_py27_cudnn7.0 bash 
+
+
+python script/dataset/transform_market1501.py --zip_file ../reid-datasets/Market-1501-v15.09.15.zip --save_dir ../reid-datasets/beyond-part-models/market1501
+
+python script/dataset/transform_cuhk03.py --zip_file ../reid-datasets/cuhk03_release.zip --train_test_partition_file ../reid-datasets/beyond-part-models/cuhk03/re_ranking_train_test_split.pkl --save_dir ../reid-datasets/beyond-part-models/cuhk03
+
+python script/dataset/transform_duke.py --zip_file ../reid-datasets/DukeMTMC-reID.zip --save_dir ../reid-datasets/beyond-part-models/duke
+
+
+

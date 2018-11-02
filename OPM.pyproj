@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{e0cbcbf3-1293-4d46-8846-2657099262bf}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile />
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId>Global|PythonCore|2.7</InterpreterId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="requirements.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="bpm\dataset\Dataset.py" />
+    <Compile Include="bpm\dataset\Prefetcher.py" />
+    <Compile Include="bpm\dataset\PreProcessImage.py" />
+    <Compile Include="bpm\dataset\TestSet.py" />
+    <Compile Include="bpm\dataset\TrainSet.py" />
+    <Compile Include="bpm\dataset\__init__.py" />
+    <Compile Include="bpm\model\PCBModel.py" />
+    <Compile Include="bpm\model\PCBModel_backup.py" />
+    <Compile Include="bpm\model\resnet.py" />
+    <Compile Include="bpm\model\__init__.py" />
+    <Compile Include="bpm\utils\dataset_utils.py" />
+    <Compile Include="bpm\utils\distance.py" />
+    <Compile Include="bpm\utils\metric.py" />
+    <Compile Include="bpm\utils\re_ranking.py" />
+    <Compile Include="bpm\utils\utils.py" />
+    <Compile Include="bpm\utils\visualization.py" />
+    <Compile Include="bpm\utils\__init__.py" />
+    <Compile Include="bpm\__init__.py" />
+    <Compile Include="script\dataset\combine_trainval_sets.py" />
+    <Compile Include="script\dataset\mapping_im_names_duke.py" />
+    <Compile Include="script\dataset\mapping_im_names_market1501.py" />
+    <Compile Include="script\dataset\transform_cuhk03.py" />
+    <Compile Include="script\dataset\transform_duke.py" />
+    <Compile Include="script\dataset\transform_market1501.py" />
+    <Compile Include="script\experiment\train_pcb.py" />
+    <Compile Include="script\experiment\train_pcb_backup.py" />
+    <Compile Include="script\experiment\visualize_rank_list.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bpm" />
+    <Folder Include="bpm\dataset" />
+    <Folder Include="bpm\model" />
+    <Folder Include="bpm\utils" />
+    <Folder Include="script\" />
+    <Folder Include="script\dataset" />
+    <Folder Include="script\experiment" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|2.7" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>
