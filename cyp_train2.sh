@@ -3,22 +3,10 @@
 CUDA_VISIBLE_DEVICES=0 python script/experiment/train_pcb.py \
 -d '(0,)' \
 --only_test false \
---dataset duke \
+--dataset cuhk03 \
 --trainset_part trainval \
---exp_dir Exp/20181006_layer3_2LayerMetricLoss_w0.2_duke \
+--exp_dir Exp/20181103_layer1_NoMetricLoss_cuhk03_VGG16Test_24_8_512_NoBN \
 --steps_per_log 20 \
 --epochs_per_val 1 \
---num_layers 3 \
---weight_metric_loss 0.2
-
-CUDA_VISIBLE_DEVICES=0 python script/experiment/train_pcb.py \
--d '(0,)' \
---only_test false \
---dataset duke \
---trainset_part trainval \
---exp_dir Exp/20181006_layer3_2LayerMetricLoss_w0.5_duke \
---steps_per_log 20 \
---epochs_per_val 1 \
---num_layers 3 \
---weight_metric_loss 0.5
-
+--num_layers 1 \
+--weight_metric_loss 0
