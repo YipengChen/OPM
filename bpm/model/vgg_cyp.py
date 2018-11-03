@@ -71,7 +71,7 @@ def remove_fc(state_dict):
   """Remove the fc layer parameters from state_dict."""
   for key, value in state_dict.items():
     print(key)
-    if key.startswith('fc.'):
+    if key.startswith('classifier.'):
       del state_dict[key]
   return state_dict
 
