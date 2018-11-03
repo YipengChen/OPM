@@ -463,7 +463,9 @@ def main():
                   loss345 = criterion(logits_list[13], labels_var)
                   loss456 = criterion(logits_list[14], labels_var)
 
-      metric_loss = torch.max(loss12-loss1.detach(),Variable(TVT(torch.zeros(1)))) + torch.max(loss12-loss2.detach(),Variable(TVT(torch.zeros(1)))) +                   torch.max(loss23-loss2.detach(),Variable(TVT(torch.zeros(1)))) + torch.max(loss23-loss3.detach(),Variable(TVT(torch.zeros(1)))) +                   torch.max(loss34-loss3.detach(),Variable(TVT(torch.zeros(1)))) + torch.max(loss34-loss4.detach(),Variable(TVT(torch.zeros(1)))) +                   torch.max(loss45-loss4.detach(),Variable(TVT(torch.zeros(1)))) + torch.max(loss45-loss5.detach(),Variable(TVT(torch.zeros(1)))) +                   torch.max(loss56-loss5.detach(),Variable(TVT(torch.zeros(1)))) + torch.max(loss56-loss6.detach(),Variable(TVT(torch.zeros(1))))
+      metric_loss = 0
+      if cfg.num_layers >=2:
+           metric_loss = torch.max(loss12-loss1.detach(),Variable(TVT(torch.zeros(1)))) + torch.max(loss12-loss2.detach(),Variable(TVT(torch.zeros(1)))) +                   torch.max(loss23-loss2.detach(),Variable(TVT(torch.zeros(1)))) + torch.max(loss23-loss3.detach(),Variable(TVT(torch.zeros(1)))) +                   torch.max(loss34-loss3.detach(),Variable(TVT(torch.zeros(1)))) + torch.max(loss34-loss4.detach(),Variable(TVT(torch.zeros(1)))) +                   torch.max(loss45-loss4.detach(),Variable(TVT(torch.zeros(1)))) + torch.max(loss45-loss5.detach(),Variable(TVT(torch.zeros(1)))) +                   torch.max(loss56-loss5.detach(),Variable(TVT(torch.zeros(1)))) + torch.max(loss56-loss6.detach(),Variable(TVT(torch.zeros(1))))
 
 
       weight_id = 1
