@@ -57,6 +57,7 @@ class PCBModel(nn.Module):
     """
     # shape [N, C, H, W]
     feat = self.base(x)
+    print(feat.size())
     assert feat.size(2) % self.num_stripes == 0
     stripe_h = int(feat.size(2) / self.num_stripes)
     local_feat_list = []
