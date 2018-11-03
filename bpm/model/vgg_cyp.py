@@ -64,6 +64,7 @@ cfg = {
     'A': [64, 'M', 128, 'M', 256, 256, 'M', 512, 512, 'M', 512, 512, 'M'],
     'B': [64, 64, 'M', 128, 128, 'M', 256, 256, 'M', 512, 512, 'M', 512, 512, 'M'],
     'D': [64, 64, 'M', 128, 128, 'M', 256, 256, 256, 'M', 512, 512, 512, 'M', 512, 512, 512, 'M'],
+    'D_cyp': [64, 64, 'M', 128, 128, 'M', 256, 256, 256, 'M', 512, 512, 512, 'M', 512, 512, 512],
     'E': [64, 64, 'M', 128, 128, 'M', 256, 256, 256, 256, 'M', 512, 512, 512, 512, 'M', 512, 512, 512, 512, 'M'],
 }
 
@@ -111,6 +112,11 @@ def vgg16(pretrained=False, model_root=None, **kwargs):
         model.load_state_dict(remove_fc(model_zoo.load_url(model_urls['vgg16'], model_root)))
     return model
 
+def vgg16_cyp(pretrained=False, model_root=None, **kwargs):
+    model = VGG(make_layers(cfg['D_cyp']), **kwargs)
+    if pretrained:
+        model.load_state_dict(remove_fc(model_zoo.load_url(model_urls['vgg16'], model_root)))
+    return model
 
 def vgg16_bn(**kwargs):
     """VGG 16-layer model (configuration "D") with batch normalization"""

@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.init as init
 import torch.nn.functional as F
 from .resnet import resnet50
-from .vgg_cyp import vgg16
+from .vgg_cyp import vgg16_cyp
 
 
 class PCBModel(nn.Module):
@@ -29,7 +29,7 @@ class PCBModel(nn.Module):
 
     self.num_layers = num_layers
 
-    self.base = vgg16(
+    self.base = vgg16_cyp(
       pretrained=True)
     
     self.num_stripes = num_stripes
