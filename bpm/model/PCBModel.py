@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.nn.init as init
 import torch.nn.functional as F
 from .resnet import resnet50
+from .vgg_cyp import vgg16
 
 
 class PCBModel(nn.Module):
@@ -27,16 +28,16 @@ class PCBModel(nn.Module):
     super(PCBModel, self).__init__()
 
     self.num_layers = num_layers
-    self.base = resnet50(
-      pretrained=True,
-      last_conv_stride=last_conv_stride,
-      last_conv_dilation=last_conv_dilation)
+
+    self.base = vgg16(
+      pretrained=True)
+    
     self.num_stripes = num_stripes
 
     self.local_conv_list = nn.ModuleList()
     for _ in range(num_all_layers):
       self.local_conv_list.append(nn.Sequential(
-        nn.Conv2d(2048, local_conv_out_channels, 1),
+        nn.Conv2d(512, local_conv_out_channels, 1),
         nn.BatchNorm2d(local_conv_out_channels),
         nn.ReLU(inplace=True)
       ))

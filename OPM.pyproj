@@ -28,6 +28,13 @@
     <Compile Include="bpm\dataset\TestSet.py" />
     <Compile Include="bpm\dataset\TrainSet.py" />
     <Compile Include="bpm\dataset\__init__.py" />
+    <Compile Include="bpm\model\resnet_fromWeb.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="bpm\model\vgg_cyp.py" />
+    <Compile Include="bpm\model\vgg_fromWeb.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="bpm\model\PCBModel.py" />
     <Compile Include="bpm\model\PCBModel_backup.py" />
     <Compile Include="bpm\model\resnet.py" />
