@@ -227,6 +227,8 @@ class TestSet(Dataset):
       print('{:<30}'.format('Multi Query:'), end='')
       print_scores(mq_mAP, mq_cmc_scores)
 
+
+
     if to_re_rank:
 
       ##########################
@@ -273,5 +275,8 @@ class TestSet(Dataset):
 
         print('{:<30}'.format('Re-ranked Multi Query:'), end='')
         print_scores(re_mq_mAP, re_mq_cmc_scores)
-
-    return mAP, cmc_scores, mq_mAP, mq_cmc_scores, re_mAP, re_cmc_scores, re_mq_mAP, re_mq_cmc_scores
+    
+    if to_re_rank:
+      return mAP, cmc_scores, mq_mAP, mq_cmc_scores, re_mAP, re_cmc_scores, re_mq_mAP, re_mq_cmc_scores
+    else:
+      return mAP, cmc_scores, mq_mAP, mq_cmc_scores, re_mAP
