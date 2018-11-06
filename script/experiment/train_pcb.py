@@ -395,7 +395,7 @@ def main():
       mAP, cmc_scores, mq_mAP, mq_cmc_scores, re_mAP, re_cmc_scores, re_mq_mAP, re_mq_cmc_scores = test_set.eval(
         normalize_feat=True,
         verbose=True)
-      scio.savemat(cfg.CMC_file, {'mAP':mAP},{'cmc_scores':cmc_scores})
+      scio.savemat(cfg.CMC_file, {'mAP':mAP,'cmc_scores':cmc_scores})
 
   def validate():
     if val_set.extract_feat_func is None:
