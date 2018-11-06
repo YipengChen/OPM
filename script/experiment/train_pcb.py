@@ -526,7 +526,7 @@ def main():
       save_ckpt(modules_optims, ep + 1, 0, cfg.ckpt_file)
 
     if ((ep + 1) % cfg.epochs_per_test == 0):
-      mAP, cmc_scores, mq_mAP, mq_cmc_scores, re_mAP, re_cmc_scores, re_mq_mAP, re_mq_cmc_scorestest(load_model_weight=False)
+      mAP, cmc_scores, mq_mAP, mq_cmc_scores, re_mAP, re_cmc_scores, re_mq_mAP, re_mq_cmc_scores = test(load_model_weight=False)
       scio.savemat(cfg.CMC_file+'CMC'+ep+'.mat', {'mAP':mAP,'cmc_scores':cmc_scores})
 
   ########
