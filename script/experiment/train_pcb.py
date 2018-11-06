@@ -250,7 +250,7 @@ class Config(object):
     # Just for loading a pretrained model; no optimizer states is needed.
     self.model_weight_file = args.model_weight_file
 
-    self.CMC_file = osp.join(self.exp_dir, 'CMC.mat')
+    self.CMC_file = osp.join(self.exp_dir, 'CMC/')
 
     # cyp parameters
     self.num_layers = args.num_layers
@@ -395,7 +395,7 @@ def main():
       mAP, cmc_scores, mq_mAP, mq_cmc_scores, re_mAP, re_cmc_scores, re_mq_mAP, re_mq_cmc_scores = test_set.eval(
         normalize_feat=True,
         verbose=True)
-      scio.savemat(cfg.CMC_file, {'mAP':mAP,'cmc_scores':cmc_scores})
+    return mAP, cmc_scores, mq_mAP, mq_cmc_scores, re_mAP, re_cmc_scores, re_mq_mAP, re_mq_cmc_scores
 
   def validate():
     if val_set.extract_feat_func is None:
@@ -526,7 +526,8 @@ def main():
       save_ckpt(modules_optims, ep + 1, 0, cfg.ckpt_file)
 
     if ((ep + 1) % cfg.epochs_per_test == 0):
-      test(load_model_weight=False)
+      mAP, cmc_scores, mq_mAP, mq_cmc_scores, re_mAP, re_cmc_scores, re_mq_mAP, re_mq_cmc_scorestest(load_model_weight=False)
+      scio.savemat(cfg.CMC_file+'CMC'+ep+'.mat', {'mAP':mAP,'cmc_scores':cmc_scores})
 
   ########
   # Test #
