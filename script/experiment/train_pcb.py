@@ -56,7 +56,7 @@ class Config(object):
     parser.add_argument('--log_to_file', type=str2bool, default=True)
     parser.add_argument('--steps_per_log', type=int, default=20)
     parser.add_argument('--epochs_per_val', type=int, default=1)
-    parser.add_argument('--epochs_per_test', type=int, default=2)
+    parser.add_argument('--epochs_per_test', type=int, default=1)
 
     parser.add_argument('--last_conv_stride', type=int, default=1, choices=[1, 2])
     # When the stride is changed to 1, we can compensate for the receptive field
@@ -527,6 +527,8 @@ def main():
 
     if ((ep + 1) % cfg.epochs_per_test == 0):
       mAP, cmc_scores, mq_mAP, mq_cmc_scores, re_mAP, re_cmc_scores, re_mq_mAP, re_mq_cmc_scores = test(load_model_weight=False)
+      if not osp.exists(cfg.CMC_file):
+        os.mkdir(cfg.CMC_file)
       scio.savemat(cfg.CMC_file+'CMC'+str(ep)+'.mat', {'mAP':mAP,'cmc_scores':cmc_scores})
 
   ########
