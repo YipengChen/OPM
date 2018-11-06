@@ -15,6 +15,8 @@ from tensorboardX import SummaryWriter
 import numpy as np
 import argparse
 
+import scipy.io as scio
+
 from bpm.dataset import create_dataset
 from bpm.model.PCBModel import PCBModel as Model
 
@@ -54,7 +56,7 @@ class Config(object):
     parser.add_argument('--log_to_file', type=str2bool, default=True)
     parser.add_argument('--steps_per_log', type=int, default=20)
     parser.add_argument('--epochs_per_val', type=int, default=1)
-    parser.add_argument('--epochs_per_test', type=int, default=10)
+    parser.add_argument('--epochs_per_test', type=int, default=2)
 
     parser.add_argument('--last_conv_stride', type=int, default=1, choices=[1, 2])
     # When the stride is changed to 1, we can compensate for the receptive field
@@ -248,6 +250,8 @@ class Config(object):
     # Just for loading a pretrained model; no optimizer states is needed.
     self.model_weight_file = args.model_weight_file
 
+    self.CMC_file = osp.join(self.exp_dir, 'CMC.mat')
+
     # cyp parameters
     self.num_layers = args.num_layers
     self.weight_metric_loss = args.weight_metric_loss
@@ -388,9 +392,10 @@ def main():
     for test_set, name in zip(test_sets, test_set_names):
       test_set.set_feat_func(ExtractFeature(model_w, TVT))
       print('\n=========> Test on dataset: {} <=========\n'.format(name))
-      test_set.eval(
+      mAP, cmc_scores, mq_mAP, mq_cmc_scores, re_mAP, re_cmc_scores, re_mq_mAP, re_mq_cmc_scores = test_set.eval(
         normalize_feat=True,
         verbose=True)
+      scio.savemat(cfg.CMC_file, {'mAP':mAP})
 
   def validate():
     if val_set.extract_feat_func is None:

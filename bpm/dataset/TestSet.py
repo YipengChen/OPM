@@ -172,7 +172,7 @@ class TestSet(Dataset):
         separate_camera_set=self.separate_camera_set,
         single_gallery_shot=self.single_gallery_shot,
         first_match_break=self.first_match_break,
-        topk=10)
+        topk=100)
       return mAP, cmc_scores
 
     def print_scores(mAP, cmc_scores):
@@ -243,10 +243,10 @@ class TestSet(Dataset):
 
       with measure_time('Computing scores for re-ranked distance...',
                         verbose=verbose):
-        mAP, cmc_scores = compute_score(re_r_q_g_dist)
+        re_mAP, re_cmc_scores = compute_score(re_r_q_g_dist)
 
       print('{:<30}'.format('Re-ranked Single Query:'), end='')
-      print_scores(mAP, cmc_scores)
+      print_scores(re_mAP, re_cmc_scores)
 
       #########################
       # Re-ranked Multi Query #
@@ -263,7 +263,7 @@ class TestSet(Dataset):
         with measure_time(
             'Multi Query, Computing scores for re-ranked distance...',
             verbose=verbose):
-          mq_mAP, mq_cmc_scores = compute_score(
+          re_mq_mAP, re_mq_cmc_scores = compute_score(
             re_r_mq_g_dist,
             query_ids=np.array(zip(*keys)[0]),
             gallery_ids=ids[g_inds],
@@ -272,6 +272,6 @@ class TestSet(Dataset):
           )
 
         print('{:<30}'.format('Re-ranked Multi Query:'), end='')
-        print_scores(mq_mAP, mq_cmc_scores)
+        print_scores(re_mq_mAP, re_mq_cmc_scores)
 
-    return mAP, cmc_scores, mq_mAP, mq_cmc_scores
+    return mAP, cmc_scores, mq_mAP, mq_cmc_scores, re_mAP, re_cmc_scores, re_mq_mAP, re_mq_cmc_scores
