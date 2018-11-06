@@ -279,4 +279,4 @@ class TestSet(Dataset):
     if to_re_rank:
       return mAP, cmc_scores, mq_mAP, mq_cmc_scores, re_mAP, re_cmc_scores, re_mq_mAP, re_mq_cmc_scores
     else:
-      return mAP, cmc_scores, mq_mAP, mq_cmc_scores, re_mAP
+      return mAP, cmc_scores, mq_mAP, mq_cmc_scores
