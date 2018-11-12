@@ -404,7 +404,7 @@ def main():
     mAP, cmc_scores, mq_mAP, mq_cmc_scores, re_mAP, re_cmc_scores, re_mq_mAP, re_mq_cmc_scores = val_set.eval(
       normalize_feat=True,
       to_re_rank=False,
-      verbose=True)
+      verbose=True,SingleQuery=True,MultiQuery=False)
     return mAP, cmc_scores[0]
 
   if cfg.only_test:
