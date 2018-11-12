@@ -231,14 +231,12 @@ class TestSet(Dataset):
         print('{:<30}'.format('Multi Query:'), end='')
         print_scores(mq_mAP, mq_cmc_scores)
 
-
-
-    if to_re_rank:
       
-      ##########################
-      # Re-ranked Single Query #
-      ##########################
-      re_mAP, re_cmc_scores = None, None
+    ##########################
+    # Re-ranked Single Query #
+    ##########################
+    re_mAP, re_cmc_scores = None, None
+    if to_re_rank:
       if SingleQuery:
         with measure_time('Re-ranking distance...', verbose=verbose):
           # query-query distance
@@ -255,10 +253,11 @@ class TestSet(Dataset):
         print('{:<30}'.format('Re-ranked Single Query:'), end='')
         print_scores(re_mAP, re_cmc_scores)
 
-      #########################
-      # Re-ranked Multi Query #
-      #########################
-      re_mq_mAP, re_mq_cmc_scores = None, None
+    #########################
+    # Re-ranked Multi Query #
+    #########################
+    re_mq_mAP, re_mq_cmc_scores = None, None
+    if to_re_rank:
       if MultiQuery:
         if any(mq_inds):
           with measure_time('Multi Query, Re-ranking distance...',
@@ -282,4 +281,4 @@ class TestSet(Dataset):
           print('{:<30}'.format('Re-ranked Multi Query:'), end='')
           print_scores(re_mq_mAP, re_mq_cmc_scores)
     
-      return mAP, cmc_scores, mq_mAP, mq_cmc_scores, re_mAP, re_cmc_scores, re_mq_mAP, re_mq_cmc_scores
+    return mAP, cmc_scores, mq_mAP, mq_cmc_scores, re_mAP, re_cmc_scores, re_mq_mAP, re_mq_cmc_scores
