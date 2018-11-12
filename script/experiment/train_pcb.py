@@ -532,12 +532,12 @@ def main():
         os.mkdir(cfg.CMC_file)
 
       if not mq_mAP is None:
-        scio.savemat(cfg.CMC_file+'CMC'+str(ep)+'.mat', {'mAP':mAP,'cmc_scores':cmc_scores,
+        scio.savemat(cfg.CMC_file+'CMC'+str(ep+1)+'.mat', {'mAP':mAP,'cmc_scores':cmc_scores,
                                                        'mq_mAP':mq_mAP,'mq_cmc_scores':mq_cmc_scores,
                                                        're_mAP':re_mAP,'re_cmc_scores':re_cmc_scores,
                                                        're_mq_mAP':re_mq_mAP,'re_mq_cmc_scores':re_mq_cmc_scores})
       else:
-        scio.savemat(cfg.CMC_file+'CMC'+str(ep)+'.mat', {'mAP':mAP,'cmc_scores':cmc_scores,
+        scio.savemat(cfg.CMC_file+'CMC'+str(ep+1)+'.mat', {'mAP':mAP,'cmc_scores':cmc_scores,
                                                        're_mAP':re_mAP,'re_cmc_scores':re_cmc_scores})
 
   ########
