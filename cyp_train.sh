@@ -1,7 +1,7 @@
 #!/bin/sh
 
-CUDA_VISIBLE_DEVICES=0 python script/experiment/train_pcb.py \
--d '(0,)' \
+CUDA_VISIBLE_DEVICES=1 python script/experiment/train_pcb.py \
+-d '(1,)' \
 --only_test false \
 --dataset market1501 \
 --trainset_part trainval \
