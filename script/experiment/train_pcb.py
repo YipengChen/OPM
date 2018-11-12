@@ -394,8 +394,7 @@ def main():
       test_set.set_feat_func(ExtractFeature(model_w, TVT))
       print('\n=========> Test on dataset: {} <=========\n'.format(name))
       mAP, cmc_scores, mq_mAP, mq_cmc_scores, re_mAP, re_cmc_scores, re_mq_mAP, re_mq_cmc_scores = test_set.eval(
-        normalize_feat=True,
-        verbose=True)
+        normalize_feat=True,to_re_rank=True,verbose=True,SingleQuery=True,MultiQuery=False)
     return mAP, cmc_scores, mq_mAP, mq_cmc_scores, re_mAP, re_cmc_scores, re_mq_mAP, re_mq_cmc_scores
 
   def validate():
@@ -530,7 +529,10 @@ def main():
       mAP, cmc_scores, mq_mAP, mq_cmc_scores, re_mAP, re_cmc_scores, re_mq_mAP, re_mq_cmc_scores = test(load_model_weight=False)
       if not osp.exists(cfg.CMC_file):
         os.mkdir(cfg.CMC_file)
-      scio.savemat(cfg.CMC_file+'CMC'+str(ep)+'.mat', {'mAP':mAP,'cmc_scores':cmc_scores})
+      scio.savemat(cfg.CMC_file+'CMC'+str(ep)+'.mat', {'mAP':mAP,'cmc_scores':cmc_scores,
+                                                       'mq_mAP':mq_mAP,'mq_cmc_scores':mq_cmc_scores,
+                                                       're_mAP':re_mAP,'re_cmc_scores':re_cmc_scores,
+                                                       're_mq_mAP':re_mq_mAP,'re_mq_cmc_scores':re_mq_cmc_scores})
 
   ########
   # Test #
