@@ -528,10 +528,15 @@ def main():
       mAP, cmc_scores, mq_mAP, mq_cmc_scores, re_mAP, re_cmc_scores, re_mq_mAP, re_mq_cmc_scores = test(load_model_weight=False)
       if not osp.exists(cfg.CMC_file):
         os.mkdir(cfg.CMC_file)
-      scio.savemat(cfg.CMC_file+'CMC'+str(ep)+'.mat', {'mAP':mAP,'cmc_scores':cmc_scores,
+
+      if not mq_mAP is None:
+        scio.savemat(cfg.CMC_file+'CMC'+str(ep)+'.mat', {'mAP':mAP,'cmc_scores':cmc_scores,
                                                        'mq_mAP':mq_mAP,'mq_cmc_scores':mq_cmc_scores,
                                                        're_mAP':re_mAP,'re_cmc_scores':re_cmc_scores,
                                                        're_mq_mAP':re_mq_mAP,'re_mq_cmc_scores':re_mq_cmc_scores})
+      else:
+        scio.savemat(cfg.CMC_file+'CMC'+str(ep)+'.mat', {'mAP':mAP,'cmc_scores':cmc_scores,
+                                                       're_mAP':re_mAP,'re_cmc_scores':re_cmc_scores})
 
   ########
   # Test #
