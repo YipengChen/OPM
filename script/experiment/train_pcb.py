@@ -56,8 +56,8 @@ class Config(object):
 
     parser.add_argument('--log_to_file', type=str2bool, default=True)
     parser.add_argument('--steps_per_log', type=int, default=20)
-    parser.add_argument('--epochs_per_val', type=int, default=1)
-    parser.add_argument('--epochs_per_test', type=int, default=1)
+    parser.add_argument('--epochs_per_val', type=int, default=20)
+    parser.add_argument('--epochs_per_test', type=int, default=5)
 
     parser.add_argument('--last_conv_stride', type=int, default=1, choices=[1, 2])
     # When the stride is changed to 1, we can compensate for the receptive field
@@ -77,7 +77,7 @@ class Config(object):
                         type=eval, default=(41,))
     parser.add_argument('--staircase_decay_multiply_factor',
                         type=float, default=0.1)
-    parser.add_argument('--total_epochs', type=int, default=60)
+    parser.add_argument('--total_epochs', type=int, default=120)
     parser.add_argument('--num_layers', type=int, default=1)
     parser.add_argument('--weight_metric_loss', type=float, default=1.0)
     args = parser.parse_args()
@@ -466,8 +466,10 @@ def main():
                   loss234 = criterion(logits_list[12], labels_var)
                   loss345 = criterion(logits_list[13], labels_var)
                   loss456 = criterion(logits_list[14], labels_var)
-
-      metric_loss = torch.max(loss12-loss1.detach(),Variable(TVT(torch.zeros(1)))) + torch.max(loss12-loss2.detach(),Variable(TVT(torch.zeros(1)))) +                   torch.max(loss23-loss2.detach(),Variable(TVT(torch.zeros(1)))) + torch.max(loss23-loss3.detach(),Variable(TVT(torch.zeros(1)))) +                   torch.max(loss34-loss3.detach(),Variable(TVT(torch.zeros(1)))) + torch.max(loss34-loss4.detach(),Variable(TVT(torch.zeros(1)))) +                   torch.max(loss45-loss4.detach(),Variable(TVT(torch.zeros(1)))) + torch.max(loss45-loss5.detach(),Variable(TVT(torch.zeros(1)))) +                   torch.max(loss56-loss5.detach(),Variable(TVT(torch.zeros(1)))) + torch.max(loss56-loss6.detach(),Variable(TVT(torch.zeros(1))))
+      
+      metric_loss = 0
+      if cfg.weight_metric_loss>0:
+        metric_loss = torch.max(loss12-loss1.detach(),Variable(TVT(torch.zeros(1)))) + torch.max(loss12-loss2.detach(),Variable(TVT(torch.zeros(1)))) +                   torch.max(loss23-loss2.detach(),Variable(TVT(torch.zeros(1)))) + torch.max(loss23-loss3.detach(),Variable(TVT(torch.zeros(1)))) +                   torch.max(loss34-loss3.detach(),Variable(TVT(torch.zeros(1)))) + torch.max(loss34-loss4.detach(),Variable(TVT(torch.zeros(1)))) +                   torch.max(loss45-loss4.detach(),Variable(TVT(torch.zeros(1)))) + torch.max(loss45-loss5.detach(),Variable(TVT(torch.zeros(1)))) +                   torch.max(loss56-loss5.detach(),Variable(TVT(torch.zeros(1)))) + torch.max(loss56-loss6.detach(),Variable(TVT(torch.zeros(1))))
 
 
       weight_id = 1
