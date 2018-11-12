@@ -401,7 +401,7 @@ def main():
     if val_set.extract_feat_func is None:
       val_set.set_feat_func(ExtractFeature(model_w, TVT))
     print('\n===== Test on validation set =====\n')
-    mAP, cmc_scores, _, _, _, _, _, _ = val_set.eval(
+    mAP, cmc_scores, mq_mAP, mq_cmc_scores, re_mAP, re_cmc_scores, re_mq_mAP, re_mq_cmc_scores = val_set.eval(
       normalize_feat=True,
       to_re_rank=False,
       verbose=True)
