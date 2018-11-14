@@ -1,7 +1,7 @@
 #!/bin/sh
 
-CUDA_VISIBLE_DEVICES=1 python script/experiment/train_pcb.py \
--d '(1,)' \
+CUDA_VISIBLE_DEVICES=0 python script/experiment/train_pcb.py \
+-d '(0,)' \
 --only_test false \
 --dataset cuhk03 \
 --trainset_part trainval \
@@ -11,8 +11,8 @@ CUDA_VISIBLE_DEVICES=1 python script/experiment/train_pcb.py \
 --weight_metric_loss 0	
 
 
-CUDA_VISIBLE_DEVICES=1 python script/experiment/train_pcb.py \
--d '(1,)' \
+CUDA_VISIBLE_DEVICES=0 python script/experiment/train_pcb.py \
+-d '(0,)' \
 --only_test false \
 --dataset cuhk03 \
 --trainset_part trainval \
@@ -22,8 +22,8 @@ CUDA_VISIBLE_DEVICES=1 python script/experiment/train_pcb.py \
 --weight_metric_loss 0	
 
 
-CUDA_VISIBLE_DEVICES=1 python script/experiment/train_pcb.py \
--d '(1,)' \
+CUDA_VISIBLE_DEVICES=0 python script/experiment/train_pcb.py \
+-d '(0,)' \
 --only_test false \
 --dataset cuhk03 \
 --trainset_part trainval \
@@ -33,8 +33,8 @@ CUDA_VISIBLE_DEVICES=1 python script/experiment/train_pcb.py \
 --weight_metric_loss 0		
 
 
-CUDA_VISIBLE_DEVICES=1 python script/experiment/train_pcb.py \
--d '(1,)' \
+CUDA_VISIBLE_DEVICES=0 python script/experiment/train_pcb.py \
+-d '(0,)' \
 --only_test false \
 --dataset cuhk03 \
 --trainset_part trainval \
